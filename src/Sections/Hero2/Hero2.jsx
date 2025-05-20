@@ -22,8 +22,8 @@ const Hero2 = () => {
                     containerWidth="300px"
                     imageHeight="300px"
                     imageWidth="350px"
-                    rotateAmplitude={23}
-                    scaleOnHover={1.2}
+                    rotateAmplitude={11}
+                    scaleOnHover={1.1}
                     showMobileWarning={false}
                     showTooltip={true}
                     displayOverlayContent={true}
