@@ -1,0 +1,11 @@
+@import "tailwindcss";
+*{
+  box-sizing: border-box;
+  /* background-color: rgb(30, 28, 28); */
+}
+.variable-proximity-demo {
+  font-family: 'Inter var', sans-serif;
+}
+.variable-proximity-demo {
+  font-family: 'Inter var', sans-serif;
+}
