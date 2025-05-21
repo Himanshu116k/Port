@@ -11,7 +11,7 @@ const Hero1 = () => {
         {/* Background Section */}
         <div className="w-full h-full flex">
           <div className="w-[2%] h-full bg-black"></div>
-          <div className="w-full border-2 border-black bg-black">
+          <div className="w-full border-2 border-black bg-black ">
             <Aurora
               colorStops={["#00D8FF", "#7CFF67", "#00D8FF"]}
               blend={0.5}

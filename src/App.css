@@ -9,3 +9,14 @@
 .variable-proximity-demo {
   font-family: 'Inter var', sans-serif;
 }
+
+
+.no-visible-scrollbar {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  -webkit-overflow-scrolling: touch;
+}
+
+.no-visible-scrollbar::-webkit-scrollbar {
+  display: none;
+}
