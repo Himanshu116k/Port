@@ -12,8 +12,22 @@ import { Timeline } from './Components/Timeline/Timeline'
 import Card1 from './Components/Codecard/Codecard'
 import  Tabs  from './Components/Project/Project'
 import { div } from 'framer-motion/client'
+// import AnimatedTestimonials from './Components/Testimonial/Testimonial'
+import {
+  VscHome,
+  VscAccount,
+  VscBriefcase,
+  VscRocket,
+  VscGlobe,
+  VscTools,
+} from "react-icons/vsc";
+import Dock  from './Sections/BottomNav/BottomNav'
 function App() {
   const timelineData = [
+    {
+      title: "Started Pyton and Data Anylycis",
+      content: <p className="text-black dark:text-white">In Jan 2023, I began learning HTML, CSS, and JavaScript.</p>,
+    },
     {
       title: "Started Learning Web Dev",
       content: <p className="text-black dark:text-white">In Jan 2023, I began learning HTML, CSS, and JavaScript.</p>,
@@ -120,6 +134,71 @@ const unsplashTabs = [
   },
 ];
 
+
+const testimonialsData = [
+  {
+    quote: "This product changed my life!",
+    name: "John Doe",
+    designation: "CEO, ExampleCorp",
+    src: "https://images.pexels.com/photos/3769021/pexels-photo-3769021.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2", // Ensure this is a valid image path
+  },
+  {
+    quote: "Amazing service and support.",
+    name: "Jane Smith",
+    designation: "CTO, TechWorld",
+    src: "https://images.pexels.com/photos/3756679/pexels-photo-3756679.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+  },
+  // Add more if needed
+];
+
+
+// const items = [
+//     { icon: <VscHome size={18} />, label: 'Home', onClick: () => alert('Home!') },
+//     { icon: <VscArchive size={18} />, label: 'Archive', onClick: () => alert('Archive!') },
+//     { icon: <VscAccount size={18} />, label: 'Profile', onClick: () => alert('Profile!') },
+//     { icon: <VscSettingsGear size={18} />, label: 'Settings', onClick: () => alert('Settings!') },
+//   ];
+
+
+const items = [
+  {
+    icon: <VscHome style={{ color: "white" }} />,
+    label: "Home",
+    onClick: () => {
+      document.getElementById("Home")?.scrollIntoView({ behavior: "smooth" });
+    },
+  },
+  {
+    icon: <VscBriefcase style={{ color: "white" }} />, // Certificates
+    label: "Certificates",
+    onClick: () => {
+      document.getElementById("Certificates")?.scrollIntoView({ behavior: "smooth" });
+    },
+  },
+  {
+    icon: <VscRocket style={{ color: "white" }} />, // Journey
+    label: "Journy",
+    onClick: () => {
+      document.getElementById("journy")?.scrollIntoView({ behavior: "smooth" });
+    },
+  },
+  {
+    icon: <VscGlobe style={{ color: "white" }} />, // Social
+    label: "Social",
+    onClick: () => {
+      document.getElementById("Social")?.scrollIntoView({ behavior: "smooth" });
+    },
+  },
+  {
+    icon: <VscTools style={{ color: "white" }} />, // Skills
+    label: "Skills",
+    onClick: () => {
+      document.getElementById("Skills")?.scrollIntoView({ behavior: "smooth" });
+    },
+  },
+];
+
+
   return (
     <>
  
@@ -129,7 +208,8 @@ const unsplashTabs = [
       <Hero2 />
       <Timeline data={timelineData} />
       <Hero3/>
-           <body className='bg-black'>
+           <div
+         className='bg-black'>
       <Hero3/>
     <Hero4/>
   
@@ -156,7 +236,7 @@ const unsplashTabs = [
 
 
 
-<div className='w-full flex justify-center ' style={{ background: 'black' }}>
+<div className='w-full flex justify-center ' style={{ background: 'black' }} id='Skills'>
   <Tabs
     tabs={unsplashTabs}
     containerClassName="my-12"
@@ -164,9 +244,24 @@ const unsplashTabs = [
     activeTabClassName="!bg-blue-300 dark:!bg-blue-800"
     contentClassName="h-[400px] bg-transparent"
   />
+  
 </div>
-  </body>
+{/* <section className="bg-white dark:bg-black relative top-[40vh]">
+      <AnimatedTestimonials testimonials={testimonialsData} autoplay={true} />
+    </section> */}
+    
+  
+  
+    
+  </div>
 
+<Dock 
+    items={items}
+    // panelHeight={68}
+    // baseItemSize={50}
+    // magnification={70}
+  />
+  
 
     </>
   )

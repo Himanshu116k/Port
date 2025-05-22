@@ -1,33 +1,28 @@
-import {
-  GlowingStarsBackgroundCard,
-  GlowingStarsTitle,
-  GlowingStarsDescription,
-} from "../../Components/Glowcard/Glowcard";
+import { useRef } from "react";
+import "./SpotlightCard.css";
 
-export default function HomePage() {
+const SpotlightCard = ({ children, className = "", spotlightColor = "rgba(255, 255, 255, 0.25)" }) => {
+  const divRef = useRef(null);
+
+  const handleMouseMove = (e) => {
+    const rect = divRef.current.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+
+    divRef.current.style.setProperty("--mouse-x", `${x}px`);
+    divRef.current.style.setProperty("--mouse-y", `${y}px`);
+    divRef.current.style.setProperty("--spotlight-color", spotlightColor);
+  };
+
   return (
-    <div className="min-h-screen flex items-center justify-center bg-black gap-5">
-      <GlowingStarsBackgroundCard>
-        <GlowingStarsTitle>Welcome Starseeker</GlowingStarsTitle>
-        <GlowingStarsDescription>
-          Hover to awaken the stars ✨
-        </GlowingStarsDescription>
-      </GlowingStarsBackgroundCard>
-
-
-       <GlowingStarsBackgroundCard>
-        <GlowingStarsTitle>Welcome Starseeker</GlowingStarsTitle>
-        <GlowingStarsDescription>
-          Hover to awaken the stars ✨
-        </GlowingStarsDescription>
-      </GlowingStarsBackgroundCard>
-
-       <GlowingStarsBackgroundCard>
-        <GlowingStarsTitle>Welcome Starseeker</GlowingStarsTitle>
-        <GlowingStarsDescription>
-          Hover to awaken the stars ✨
-        </GlowingStarsDescription>
-      </GlowingStarsBackgroundCard>
+    <div
+      ref={divRef}
+      onMouseMove={handleMouseMove}
+      className={`card-spotlight ${className}`}
+    >
+      {children}
     </div>
   );
-}
+};
+
+export default SpotlightCard;

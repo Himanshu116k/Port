@@ -1,0 +1,104 @@
+.card-spotlight {
+  position: relative;
+  border-radius: 1.5rem;
+  border: 1px solid #222;
+  background-color: #111;
+  padding: 2rem;
+  overflow: hidden;
+  --mouse-x: 50%;
+  --mouse-y: 50%;
+  --spotlight-color: rgba(255, 255, 255, 0.05);
+      width: 30%;
+}
+
+.card-spotlight::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle at var(--mouse-x) var(--mouse-y), var(--spotlight-color), transparent 80%);
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  pointer-events: none;
+}
+
+.card-spotlight:hover::before,
+.card-spotlight:focus-within::before {
+  opacity: 0.6;.card-spotlight {
+  position: relative;
+  border-radius: 1.5rem;
+  border: 1px solid #222;
+  background-color: #111;
+  padding: 2rem;
+  overflow: hidden;
+  --mouse-x: 50%;
+  --mouse-y: 50%;
+  --spotlight-color: rgba(255, 255, 255, 0.05);
+}
+
+.card-spotlight::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle at var(--mouse-x) var(--mouse-y), var(--spotlight-color), transparent 80%);
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  pointer-events: none;
+}
+
+.card-spotlight:hover::before,
+.card-spotlight:focus-within::before {
+  opacity: 0.6;
+}
+
+}
+
+.spotlight-button {
+  background: linear-gradient(135deg, #ff0057, #ff6a00);
+  color: white;
+  border: none;
+  padding: 0.6rem 1.5rem;
+  border-radius: 30px;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(255, 106, 0, 0.5);
+  transition: background 0.3s ease, box-shadow 0.3s ease;
+}
+
+.spotlight-button:hover {
+  background: linear-gradient(135deg, #ff6a00, #ff0057);
+  box-shadow: 0 6px 15px rgba(255, 0, 87, 0.7);
+}
+
+.spotlight-button:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(255, 0, 87, 0.8);
+}
+
+
+
+.github-button {
+  background: linear-gradient(135deg, #333, #555);
+  box-shadow: 0 4px 10px rgba(85, 85, 85, 0.6);
+}
+
+.github-button:hover {
+  background: linear-gradient(135deg, #222, #444);
+  box-shadow: 0 6px 15px rgba(51, 51, 51, 0.8);
+}
+
+.linkedin-button {
+  background: linear-gradient(135deg, #0a66c2, #004182);
+  box-shadow: 0 4px 10px rgba(10, 102, 194, 0.5);
+}
+
+.linkedin-button:hover {
+  background: linear-gradient(135deg, #004182, #003060);
+  box-shadow: 0 6px 15px rgba(0, 65, 130, 0.7);
+}

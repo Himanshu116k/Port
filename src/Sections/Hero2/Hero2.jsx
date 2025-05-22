@@ -12,7 +12,7 @@ import { useRef } from 'react';
 const Hero2 = () => {
     const containerRef = useRef(null);
     return (
-        <div className='flex flex-row justify-around items-center h-full w-full bg-black px-[5vh]'>
+        <div className='flex flex-row justify-around items-center h-full w-full bg-black px-[5vh]' id='Home'>
             <div className='h-[63vh]  w-[50%] flex items-center justify-center mt-[10vh]' >
                 <TiltedCard
                     imageSrc={Image}
