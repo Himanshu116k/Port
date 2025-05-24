@@ -1,154 +1,138 @@
-// "use client";;
-// import { IconArrowLeft, IconArrowRight } from "@tabler/icons-react";
-// import { motion, AnimatePresence } from "motion/react";
+import React, { Fragment } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faStar, faStarHalfAlt } from "@fortawesome/free-solid-svg-icons";
+import classNames from "classnames";
+import PropTypes from "prop-types";
 
-// import { useEffect, useState } from "react";
+const testimonialList = [
+	{
+		author: {
+			fullName: "Akshay Kumar",
+			picture: "https://cdn.easyfrontend.com/pictures/users/user28.jpg",
+			designation: "Founder / CEO",
+		},
+		rating: 3.5,
+		description:
+			"Land. Stars land every there was together very fifth, above greater also replenish seas good was second divide which beast abundantly blessed don't fifth us given make called gathering fowl. The gathered, hath. Which appear said there saw fish so Above. Light made is sea yielding let he that whose.",
+	},
+	{
+		author: {
+			fullName: "Raima Sen",
+			picture: "https://cdn.easyfrontend.com/pictures/users/user7.jpg",
+			designation: "Business Head",
+		},
+		rating: 4,
+		description:
+			"Heaven day created don't kind darkness that which midst us created every. Shall good brought grass that bearing said fowl sixth them abundantly. Dominion. Every gathering so said forth doesn't all from. It tree. Have subdue third let void let gathering creepeth. Be saw appear. Day every it fruitful life.",
+	},
+	{
+		author: {
+			fullName: "Arjun Kapur",
+			picture: "https://cdn.easyfrontend.com/pictures/users/user26.jpg",
+			designation: "UI Design",
+		},
+		rating: 5,
+		description:
+			"It’s easier to reach your savings goals when you have the right savings account. Take a look and find the right one for you.It’s easier to reach your savings goals when you have the right savings account. Take a look and find the right one for youIt’s easier to reach your savings goals when you have the right savings account. Take a look and find the right one for you!",
+	},
+];
 
-// export const AnimatedTestimonials = ({
-//   testimonials,
-//   autoplay = false
-// }) => {
-//   const [active, setActive] = useState(0);
+const Rating = ({ rating, showLabel, className, ...rest }) => (
+	<p className={classNames("mb-6", className)} {...rest}>
+		<span>
+			{[...Array(5)].map((_, i) => {
+				const index = i + 1;
+				let content = "";
+				if (index <= Math.floor(rating))
+					content = (
+						<FontAwesomeIcon icon={faStar} className="text-yellow-500" />
+					);
+				else if (rating > i && rating < index + 1)
+					content = (
+						<FontAwesomeIcon icon={faStarHalfAlt} className="text-yellow-500" />
+					);
+				else if (index > rating)
+					content = (
+						<FontAwesomeIcon
+							icon={faStar}
+							className="text-yellow-200 dark:text-opacity-20"
+						/>
+					);
 
-//   const handleNext = () => {
-//     setActive((prev) => (prev + 1) % testimonials.length);
-//   };
+				return <Fragment key={i}>{content}</Fragment>;
+			})}
+		</span>
+		{showLabel && <span>{rating.toFixed(1)}</span>}
+	</p>
+);
 
-//   const handlePrev = () => {
-//     setActive((prev) => (prev - 1 + testimonials.length) % testimonials.length);
-//   };
+Rating.propTypes = {
+	rating: PropTypes.number.isRequired,
+	showLabel: PropTypes.bool,
+	className: PropTypes.string,
+};
 
-//   const isActive = (index) => {
-//     return index === active;
-//   };
+const TestimonialItem = ({ testimonial, index }) => (
+	<div id="Testimonials" className="grid grid-cols-12 gap-6 mt-12" >
+		<div
+			className={`col-span-12 md:col-span-5 ${index % 2 !== 0 && "md:order-2"}`}
+		>
+			<img
+				src={testimonial.author.picture}
+				alt={testimonial.author.fullName}
+				className="w-full  p-5 rounded-[50px]"
+			/>
+		</div>
+		<div
+			className={`col-span-12 md:col-span-6 ${
+				index % 2 === 0 && "md:col-start-7"
+			}`}
+		>
+			<div className="flex flex-col justify-center h-full">
+				<h4 className="text-2xl font-medium mb-1">
+					{testimonial.author.fullName}
+				</h4>
+				<p className="mb-1">{testimonial.author.designation}</p>
+				<Rating rating={testimonial.rating} showLabel={false} />
+				<p className="mb-6">
+					<span className="fas fa-star text-yellow-500"></span>
+					<span className="fas fa-star text-yellow-500"></span>
+					<span className="fas fa-star text-yellow-500"></span>
+					<span className="fas fa-star-half-alt text-yellow-500"></span>
+					<span className="fas fa-star text-yellow-200 dark:text-opacity-20"></span>
+				</p>
+				<p className="opacity-50 lg:pr-20">{testimonial.description}</p>
+			</div>
+		</div>
+	</div>
+);
 
-//   useEffect(() => {
-//     if (autoplay) {
-//       const interval = setInterval(handleNext, 5000);
-//       return () => clearInterval(interval);
-//     }
-//   }, [autoplay]);
+TestimonialItem.propTypes = {
+	testimonial: PropTypes.object.isRequired,
+	index: PropTypes.number.isRequired,
+};
 
-//   const randomRotateY = () => {
-//     return Math.floor(Math.random() * 21) - 10;
-//   };
-//   return (
-//     <div
-//       className="mx-auto max-w-sm px-4 py-20 font-sans antialiased md:max-w-4xl md:px-8 lg:px-12">
-//       <div className="relative grid grid-cols-1 gap-20 md:grid-cols-2">
-//         <div>
-//           <div className="relative h-80 w-full">
-//             <AnimatePresence>
-//               {testimonials.map((testimonial, index) => (
-//                 <motion.div
-//                   key={testimonial.src}
-//                   initial={{
-//                     opacity: 0,
-//                     scale: 0.9,
-//                     z: -100,
-//                     rotate: randomRotateY(),
-//                   }}
-//                   animate={{
-//                     opacity: isActive(index) ? 1 : 0.7,
-//                     scale: isActive(index) ? 1 : 0.95,
-//                     z: isActive(index) ? 0 : -100,
-//                     rotate: isActive(index) ? 0 : randomRotateY(),
-//                     zIndex: isActive(index)
-//                       ? 40
-//                       : testimonials.length + 2 - index,
-//                     y: isActive(index) ? [0, -80, 0] : 0,
-//                   }}
-//                   exit={{
-//                     opacity: 0,
-//                     scale: 0.9,
-//                     z: 100,
-//                     rotate: randomRotateY(),
-//                   }}
-//                   transition={{
-//                     duration: 0.4,
-//                     ease: "easeInOut",
-//                   }}
-//                   className="absolute inset-0 origin-bottom">
-//                   <img
-//                     src={testimonial.src}
-//                     alt={testimonial.name}
-//                     width={500}
-//                     height={500}
-//                     draggable={false}
-//                     className="h-full w-full rounded-3xl object-cover object-center" />
-//                 </motion.div>
-//               ))}
-//             </AnimatePresence>
-//           </div>
-//         </div>
-//         <div className="flex flex-col justify-between py-4">
-//           <motion.div
-//             key={active}
-//             initial={{
-//               y: 20,
-//               opacity: 0,
-//             }}
-//             animate={{
-//               y: 0,
-//               opacity: 1,
-//             }}
-//             exit={{
-//               y: -20,
-//               opacity: 0,
-//             }}
-//             transition={{
-//               duration: 0.2,
-//               ease: "easeInOut",
-//             }}>
-//             <h3 className="text-2xl font-bold text-black dark:text-white">
-//               {testimonials[active].name}
-//             </h3>
-//             <p className="text-sm text-gray-500 dark:text-neutral-500">
-//               {testimonials[active].designation}
-//             </p>
-//             <motion.p className="mt-8 text-lg text-gray-500 dark:text-neutral-300">
-//               {testimonials[active].quote.split(" ").map((word, index) => (
-//                 <motion.span
-//                   key={index}
-//                   initial={{
-//                     filter: "blur(10px)",
-//                     opacity: 0,
-//                     y: 5,
-//                   }}
-//                   animate={{
-//                     filter: "blur(0px)",
-//                     opacity: 1,
-//                     y: 0,
-//                   }}
-//                   transition={{
-//                     duration: 0.2,
-//                     ease: "easeInOut",
-//                     delay: 0.02 * index,
-//                   }}
-//                   className="inline-block">
-//                   {word}&nbsp;
-//                 </motion.span>
-//               ))}
-//             </motion.p>
-//           </motion.div>
-//           <div className="flex gap-4 pt-12 md:pt-0">
-//             <button
-//               onClick={handlePrev}
-//               className="group/button flex h-7 w-7 items-center justify-center rounded-full bg-gray-100 dark:bg-neutral-800">
-//               <IconArrowLeft
-//                 className="h-5 w-5 text-black transition-transform duration-300 group-hover/button:rotate-12 dark:text-neutral-400" />
-//             </button>
-//             <button
-//               onClick={handleNext}
-//               className="group/button flex h-7 w-7 items-center justify-center rounded-full bg-gray-100 dark:bg-neutral-800">
-//               <IconArrowRight
-//                 className="h-5 w-5 text-black transition-transform duration-300 group-hover/button:-rotate-12 dark:text-neutral-400" />
-//             </button>
-//           </div>
-//         </div>
-//       </div>
-//     </div>
-//   );
-// };
+const Testimonial4 = () => {
+	return (
+		<section className="ezy__testimonial4 dark py-14 md:py-24 bg-white dark:bg-[#0b1727] text-zinc-900 dark:text-white">
+			<div className="container px-4 mx-auto">
+				<div className="flex justify-center mb-6 md:mb-12">
+					<div className="sm:max-w-lg text-center">
+						<h2 className="text-3xl leading-none md:text-[45px] font-bold mb-4">
+							Community Reviews
+						</h2>
+						<p>
+							Assumenda non repellendus distinctio nihil dicta sapiente,
+							quibusdam maiores, illum at qui.
+						</p>
+					</div>
+				</div>
 
-// export default AnimatedTestimonials;
+				{testimonialList.map((testimonial, i) => (
+					<TestimonialItem testimonial={testimonial} index={i} key={i} />
+				))}
+			</div>
+		</section>
+	);
+};
+export default Testimonial4

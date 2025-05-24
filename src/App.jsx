@@ -12,7 +12,8 @@ import { Timeline } from './Components/Timeline/Timeline'
 import Card1 from './Components/Codecard/Codecard'
 import  Tabs  from './Components/Project/Project'
 import { div } from 'framer-motion/client'
-// import AnimatedTestimonials from './Components/Testimonial/Testimonial'
+import Testimonial4 from './Components/Testimonial/Testimonial'
+// import ContactForm from './Sections/Contact/Contact'
 import {
   VscHome,
   VscAccount,
@@ -20,6 +21,8 @@ import {
   VscRocket,
   VscGlobe,
   VscTools,
+  
+  VscPerson ,
 } from "react-icons/vsc";
 import Dock  from './Sections/BottomNav/BottomNav'
 function App() {
@@ -48,13 +51,14 @@ const unsplashTabs = [
     value: "nature",
     content: (
       
-      <div className="p-4 bg-black  w-[70%]   bg-gradient-to-br from-purple-700 to-violet-900 rounded-lg shadow">
+      <div className="p-4 bg-black h-[80vh]  w-[70%]   bg-gradient-to-br from-purple-700 to-violet-900 rounded-lg shadow">
         <h2 className="text-xl font-bold text-black dark:text-white ">Beautiful Nature</h2>
         <div className='w-full h-[70%] flex justify-center items-center'>
         <img
           src="https://images.pexels.com/photos/7184402/pexels-photo-7184402.jpeg?auto=compress&cs=tinysrgb&w=600"
           alt="Nature"
-          className="rounded-lg shadow-md w-full max-w-2xl"
+          className="rounded-lg shadow-md w-[80%] max-w-2xl h-[80%] mx-auto
+"
         />
         </div>
         <p className=" text-black dark:text-white">
@@ -68,12 +72,13 @@ const unsplashTabs = [
     title: "Tech",
     value: "tech",
     content: (
-      <div className="p-4 bg-black  w-[70%]   bg-gradient-to-br from-purple-700 to-violet-900 rounded-lg shadow">
+      <div className="p-4 bg-black h-[80vh]  w-[70%]  bg-gradient-to-br from-purple-700 to-violet-900 rounded-lg shadow">
         <h2 className="text-xl font-bold text-black dark:text-white mb-2">Technology</h2>
         <img
           src="https://images.pexels.com/photos/4348556/pexels-photo-4348556.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
           alt="Technology"
-          className="rounded-lg shadow-md w-full max-w-2xl"
+         className="rounded-lg shadow-md w-[80%] max-w-2xl h-[80%] mx-auto
+"
         />
         <p className="mt-2 text-black dark:text-white">
           A glimpse into the modern world driven by innovation.
@@ -85,12 +90,13 @@ const unsplashTabs = [
     title: "Architecture",
     value: "architecture",
     content: (
-      <div className="p-4 bg-black  w-[70%]   bg-gradient-to-br from-purple-700 to-violet-900 rounded-lg shadow">
+      <div className="p-4 bg-black h-[80vh]  w-[70%]  bg-gradient-to-br from-purple-700 to-violet-900 rounded-lg shadow">
         <h2 className="text-xl font-bold text-black dark:text-white mb-2">Architecture</h2>
         <img
           src="https://images.pexels.com/photos/6624869/pexels-photo-6624869.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
           alt="Architecture"
-          className="rounded-lg shadow-md w-full max-w-2xl"
+         className="rounded-lg shadow-md w-[80%] max-w-2xl h-[80%] mx-auto
+"
         />
         <p className="mt-2 text-black dark:text-white">
           Explore structures that define civilization’s creative edge.
@@ -102,12 +108,13 @@ const unsplashTabs = [
     title: "Mountains",
     value: "mountains",
     content: (
-      <div className="p-4 bg-black  w-[70%]   bg-gradient-to-br from-purple-700 to-violet-900 rounded-lg shadow">
+      <div className="p-4 bg-black h-[80vh]  w-[70%]   bg-gradient-to-br from-purple-700 to-violet-900 rounded-lg shadow">
         <h2 className="text-xl font-bold text-black dark:text-white mb-2">Majestic Mountains</h2>
         <img
           src="https://images.pexels.com/photos/4503875/pexels-photo-4503875.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
           alt="Mountains"
-          className="rounded-lg shadow-md w-full max-w-2xl"
+         className="rounded-lg shadow-md w-[80%] max-w-2xl h-[80%] mx-auto
+"
         />
         <p className="mt-2 text-black dark:text-white">
           Climb to the heights and witness the serenity from above.
@@ -119,12 +126,13 @@ const unsplashTabs = [
     title: "Plate",
     value: "Plate",
     content: (
-      <div className="p-4 bg-black  w-[70%]   bg-gradient-to-br from-purple-700 to-violet-900 rounded-lg shadow">
+      <div className="p-4 bg-black h-[80vh]  w-[70%]   bg-gradient-to-br from-purple-700 to-violet-900 rounded-lg shadow">
         <h2 className="text-xl font-bold text-black dark:text-white mb-2">Majestic Mountains</h2>
         <img
           src="https://images.pexels.com/photos/5913380/pexels-photo-5913380.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
           alt="Mountains"
-          className="rounded-lg shadow-md w-full max-w-2xl"
+          className="rounded-lg shadow-md w-[80%] max-w-2xl h-[80%] mx-auto
+"
         />
         <p className="mt-2 text-black dark:text-white">
           Climb to the heights and witness the serenity from above.
@@ -135,21 +143,6 @@ const unsplashTabs = [
 ];
 
 
-const testimonialsData = [
-  {
-    quote: "This product changed my life!",
-    name: "John Doe",
-    designation: "CEO, ExampleCorp",
-    src: "https://images.pexels.com/photos/3769021/pexels-photo-3769021.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2", // Ensure this is a valid image path
-  },
-  {
-    quote: "Amazing service and support.",
-    name: "Jane Smith",
-    designation: "CTO, TechWorld",
-    src: "https://images.pexels.com/photos/3756679/pexels-photo-3756679.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-  },
-  // Add more if needed
-];
 
 
 // const items = [
@@ -194,6 +187,13 @@ const items = [
     label: "Skills",
     onClick: () => {
       document.getElementById("Skills")?.scrollIntoView({ behavior: "smooth" });
+    },
+  },
+  {
+    icon: <VscPerson    style={{ color: "white" }} />, // Skills
+    label: "Testimonials",
+    onClick: () => {
+      document.getElementById("Testimonials")?.scrollIntoView({ behavior: "smooth" });
     },
   },
 ];
@@ -261,6 +261,10 @@ const items = [
     // baseItemSize={50}
     // magnification={70}
   />
+  <Testimonial4/>
+  
+
+  {/* <ContactForm/> */}
   
 
     </>
