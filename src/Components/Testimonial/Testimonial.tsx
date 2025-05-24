@@ -73,7 +73,7 @@ Rating.propTypes = {
 };
 
 const TestimonialItem = ({ testimonial, index }) => (
-	<div id="Testimonials" className="grid grid-cols-12 gap-6 mt-12" >
+	<div  className="grid grid-cols-12 gap-6 mt-12" >
 		<div
 			className={`col-span-12 md:col-span-5 ${index % 2 !== 0 && "md:order-2"}`}
 		>
@@ -114,7 +114,7 @@ TestimonialItem.propTypes = {
 
 const Testimonial4 = () => {
 	return (
-		<section className="ezy__testimonial4 dark py-14 md:py-24 bg-white dark:bg-[#0b1727] text-zinc-900 dark:text-white">
+		<section className="ezy__testimonial4 dark py-14 md:py-24 bg-white dark:bg-[#0b1727] text-zinc-900 dark:text-white " id="Testimonials">
 			<div className="container px-4 mx-auto">
 				<div className="flex justify-center mb-6 md:mb-12">
 					<div className="sm:max-w-lg text-center">

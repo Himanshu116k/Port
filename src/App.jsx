@@ -13,7 +13,7 @@ import Card1 from './Components/Codecard/Codecard'
 import  Tabs  from './Components/Project/Project'
 import { div } from 'framer-motion/client'
 import Testimonial4 from './Components/Testimonial/Testimonial'
-// import ContactForm from './Sections/Contact/Contact'
+import ContactForm from './Sections/Contact/Contact'
 import {
   VscHome,
   VscAccount,
@@ -21,10 +21,12 @@ import {
   VscRocket,
   VscGlobe,
   VscTools,
+  VscMail ,
   
   VscPerson ,
 } from "react-icons/vsc";
 import Dock  from './Sections/BottomNav/BottomNav'
+import Footer from './Sections/Footer/Footer'
 function App() {
   const timelineData = [
     {
@@ -196,6 +198,13 @@ const items = [
       document.getElementById("Testimonials")?.scrollIntoView({ behavior: "smooth" });
     },
   },
+  {
+    icon: <VscMail     style={{ color: "white" }} />, // Skills
+    label: "Contact Me ?",
+    onClick: () => {
+      document.getElementById("Contact")?.scrollIntoView({ behavior: "smooth" });
+    },
+  },
 ];
 
 
@@ -264,9 +273,9 @@ const items = [
   <Testimonial4/>
   
 
-  {/* <ContactForm/> */}
+  <ContactForm/>
   
-
+   <Footer/>
     </>
   )
 }

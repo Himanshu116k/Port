@@ -1,121 +1,107 @@
-// import { useRef, useState } from "react";
+import { useRef, useState } from "react";
 // import emailjs from "@emailjs/browser";
+import TitleHeader from "../../Components/Contact/TitleHeader";
+import ContactExperience from "../../Components/Contact/ContactExperience";
 
-// import TitleHeader from "../Components/TitleHeader";
-// import ContactExperience from "../Components/Models/Contacts/ContactExperience";
+const Contact = () => {
+  const formRef = useRef(null);
+  const [loading, setLoading] = useState(false);
+  const [form, setForm] = useState({
+    name: "",
+    email: "",
+    message: "",
+  });
 
-// const Contact = () => {
-//   const formRef = useRef(null);
-//   const [loading, setLoading] = useState(false);
-//   const [form, setForm] = useState({
-//     name: "",
-//     email: "",
-//     message: "",
-//   });
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setForm({ ...form, [name]: value });
+  };
 
-//   const handleChange = (e) => {
-//     const { name, value } = e.target;
-//     setForm({ ...form, [name]: value });
-//   };
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setLoading(true);
 
-//   const handleSubmit = async (e) => {
-//     e.preventDefault();
-//     setLoading(true); // Show loading state
+    // EmailJS code goes here if needed
+    /*
+    try {
+      await emailjs.sendForm(
+        import.meta.env.VITE_APP_SERVICE_ID,
+        import.meta.env.VITE_APP_EMAIL_TEMP,
+        formRef.current,
+        import.meta.env.VITE_APP_EMAIL_PUBLIC
+      );
+      setForm({ name: "", email: "", message: "" });
+    } catch (error) {
+      console.error("EmailJS Error:", error);
+    } finally {
+      setLoading(false);
+    }
+    */
+  };
 
-//     try {
-//       await emailjs.sendForm(
-//         import.meta.env.VITE_APP_SERVICE_ID,
-//         import.meta.env.VITE_APP_EMAIL_TEMP,
-//         formRef.current,
-//         import.meta.env.VITE_APP_EMAIL_PUBLIC
-//       );
+  return (
+    <div className="flex flex-col lg:flex-row justify-around items-center px-4 py-10 bg-black min-h-screen" id="Contact">
+      {/* Contact Form Section */}
+      <div className="w-full lg:w-1/2 max-w-xl bg-white p-6 rounded-2xl shadow-lg">
+        <form ref={formRef} onSubmit={handleSubmit} className="flex flex-col gap-4">
+          <h2 className="text-2xl font-bold mb-4 text-center">Contact Us</h2>
 
-//       // Reset form and stop loading
-//       setForm({ name: "", email: "", message: "" });
-//     } catch (error) {
-//       console.error("EmailJS Error:", error); // Optional: show toast
-//     } finally {
-//       setLoading(false); // Always stop loading, even on error
-//     }
-//   };
+          <label className="flex flex-col text-sm font-medium">
+            Your Name
+            <input
+              type="text"
+              name="name"
+              placeholder="Enter your name"
+              value={form.name}
+              onChange={handleChange}
+              className="mt-1 px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+              required
+            />
+          </label>
 
-//   return (
-//     <section id="contact" className="flex-center section-padding">
-//       <div className="w-full h-full md:px-10 px-5">
-//         <TitleHeader
-//           title="Get in Touch – Let’s Connect"
-//           sub="💬 Have questions or ideas? Let’s talk! 🚀"
-//         />
-//         <div className="grid-12-cols mt-16">
-//           <div className="xl:col-span-5">
-//             <div className="flex-center card-border rounded-xl p-10">
-//               <form
-//                 ref={formRef}
-//                 onSubmit={handleSubmit}
-//                 className="w-full flex flex-col gap-7"
-//               >
-//                 <div>
-//                   <label htmlFor="name">Your name</label>
-//                   <input
-//                     type="text"
-//                     id="name"
-//                     name="name"
-//                     value={form.name}
-//                     onChange={handleChange}
-//                     placeholder="What’s your good name?"
-//                     required
-//                   />
-//                 </div>
+          <label className="flex flex-col text-sm font-medium">
+            Your Email
+            <input
+              type="email"
+              name="email"
+              placeholder="Enter your email"
+              value={form.email}
+              onChange={handleChange}
+              className="mt-1 px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+              required
+            />
+          </label>
 
-//                 <div>
-//                   <label htmlFor="email">Your Email</label>
-//                   <input
-//                     type="email"
-//                     id="email"
-//                     name="email"
-//                     value={form.email}
-//                     onChange={handleChange}
-//                     placeholder="What’s your email address?"
-//                     required
-//                   />
-//                 </div>
+          <label className="flex flex-col text-sm font-medium">
+            Your Message
+            <textarea
+              name="message"
+              rows="5"
+              placeholder="Type your message here"
+              value={form.message}
+              onChange={handleChange}
+              className="mt-1 px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+              required
+            />
+          </label>
 
-//                 <div>
-//                   <label htmlFor="message">Your Message</label>
-//                   <textarea
-//                     id="message"
-//                     name="message"
-//                     value={form.message}
-//                     onChange={handleChange}
-//                     placeholder="How can I help you?"
-//                     rows="5"
-//                     required
-//                   />
-//                 </div>
+          <button
+            type="submit"
+            disabled={loading}
+            className="bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition duration-300"
+          >
+            {loading ? "Sending..." : "Send Message"}
+          </button>
+        </form>
+      </div>
 
-//                 <button type="submit">
-//                   <div className="cta-button group">
-//                     <div className="bg-circle" />
-//                     <p className="text">
-//                       {loading ? "Sending..." : "Send Message"}
-//                     </p>
-//                     <div className="arrow-wrapper">
-//                       <img src="/images/arrow-down.svg" alt="arrow" />
-//                     </div>
-//                   </div>
-//                 </button>
-//               </form>
-//             </div>
-//           </div>
-//           <div className="xl:col-span-7 min-h-96">
-//             <div className="bg-[#cd7c2e] w-full h-full hover:cursor-grab rounded-3xl overflow-hidden">
-//               <ContactExperience />
-//             </div>
-//           </div>
-//         </div>
-//       </div>
-//     </section>
-//   );
-// };
+      {/* Image or Illustration Section */}
+      <div className="hidden lg:block lg:w-1/2 text-center mt-10 lg:mt-0 ">
+       
+        <img src="https://www.figma.com/community/resource/bb21de5b-a79b-4444-9cd1-1a084ff135e2/thumbnail" alt="Contact" className="w-full max-w-md mx-auto rounded-lg" />
+      </div>
+    </div>
+  );
+};
 
-// export default Contact;
+export default Contact;
